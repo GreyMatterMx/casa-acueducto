@@ -1,0 +1,170 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    font-family: 'Sora', sans-serif;
+    background-color: #fefefe;
+    color: #1a1a1a;
+    overflow-x: hidden;
+  }
+  
+  /* Top */
+  .info-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+  }
+  
+  .info-top img {
+    width: 70px;
+    height: auto;
+  }
+  
+  .info-top h1 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.3;
+    letter-spacing: 1px;
+    margin-right: 8.5rem;
+  }
+  
+  .info-top h1 span {
+    font-weight: 400;
+    font-size: 1rem;
+  }
+  
+  /* Sidebar */
+  .menu-toggle {
+    position: absolute;
+    top: 2.5rem;
+    right: 3.5rem;
+    width: 45px;
+    cursor: pointer;
+    z-index: 100;
+  }
+  
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 75%;
+    height: 100%;
+    background-color: rgba(26, 26, 26, 0.95);
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    padding: 2rem;
+    z-index: 99;
+  }
+  
+  .sidebar.active {
+    transform: translateX(0%);
+  }
+  
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 5rem;
+  }
+  
+  .sidebar-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 17rem;
+  }
+  
+  /* Encuesta */
+  .encuesta-container {
+    padding: 1rem 4.3rem 2rem 3.5rem; /* top, right, bottom, left */
+    font-size: 0.8rem;
+    line-height: 1.3;
+    margin-top: -0.8rem; /* Subir todo el bloque */
+  }
+  
+  
+  .encuesta-container h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+  }
+  
+  .form-encuesta h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 1.8rem 0 0.8rem;
+  }
+  
+  .form-encuesta label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: 500;
+  }
+  
+  .form-encuesta input,
+  .form-encuesta select,
+  .form-encuesta textarea {
+    width: 100%;
+    padding: 0.5rem 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 14px;
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+  }
+  
+  textarea {
+    min-height: 60px;
+    resize: vertical;
+  }
+  
+  /* Footer */
+  .footer {
+    background-color: #111;
+    color: white;
+    text-align: center;
+    font-size: 0.75rem;
+    padding: 1.2rem 1rem;
+    letter-spacing: 1px;
+    font-weight: 400;
+    margin-top: 1rem;
+  }
+  
+
+  .enviar-encuesta {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  .enviar-encuesta button {
+    background-color: #A32C55;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .enviar-encuesta button:hover {
+    background-color: #721131;
+  }
+  
