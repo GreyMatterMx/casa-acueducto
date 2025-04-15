@@ -47,7 +47,7 @@ body {
   text-align: center;
   gap: 1.5rem;
   padding: 0 1rem;
-  margin-top: 7.2rem;
+  margin-top: 3rem;
   flex-grow: 1; /* Permite que crezca dentro del body flexible */
 }
 
@@ -55,7 +55,7 @@ body {
   width: 100%;
   max-width: 330px;
   margin-top: 1rem;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 .slogan {
@@ -86,7 +86,7 @@ body {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top:0rem;
   margin-bottom: 3.5rem; /* Aumentado para que los botones no se corten */
   flex-wrap: wrap;
 }
