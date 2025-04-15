@@ -74,7 +74,8 @@
         <input type="time" id="hora" required class="input-hora" />
       </div>
 
-      <div class="bottom-buttons">
+      <!-- ✅ Botones con ID para mostrar/ocultar -->
+      <div class="bottom-buttons" id="bottomButtons">
         <a href="https://wa.me/524431165465" target="_blank">Contáctanos vía WhatsApp</a>
         <a href="tel:+524431165465">Llámanos</a>
       </div>
@@ -93,8 +94,7 @@
   <!-- ✅ JS GENERAL -->
   <script>
     function abrirSidebar() {
-      const sidebar = document.getElementById("sidebar");
-      sidebar.classList.add("active");
+      document.getElementById("sidebar").classList.add("active");
       setTimeout(() => cerrarSidebar(), 5000);
     }
 
@@ -109,6 +109,7 @@
     const cantidadSpan = document.getElementById('cantidad');
     const horaInput = document.getElementById('hora');
     const resumenParrafo = document.querySelector('.reserva-confirm p');
+    const bottomButtons = document.getElementById('bottomButtons');
 
     const hoy = new Date().toISOString().split('T')[0];
     window.addEventListener('DOMContentLoaded', () => {
@@ -117,6 +118,7 @@
       selectorFecha.style.display = 'none';
       fechaInput.value = hoy;
       actualizarResumen();
+      bottomButtons.style.display = 'flex'; // Mostrar por defecto
     });
 
     btnHoy.onclick = () => {
@@ -124,6 +126,7 @@
       btnOtra.classList.remove('active');
       selectorFecha.style.display = 'none';
       fechaInput.value = hoy;
+      bottomButtons.style.display = 'flex'; // ✅ Mostrar
     };
 
     btnOtra.onclick = () => {
@@ -131,6 +134,7 @@
       btnOtra.classList.add('active');
       selectorFecha.style.display = 'block';
       fechaInput.value = '';
+      bottomButtons.style.display = 'none'; // ✅ Ocultar
     };
 
     function cambiarCantidad(delta) {
@@ -170,7 +174,7 @@
 
       const mensaje = `¡Hola! Quiero reservar una mesa en Casa Acueducto.\n\n🧑‍🤝‍🧑 Nombre: ${nombre}\n📱 Teléfono: ${telefono}\n👥 Personas: ${personas}\n📅 Fecha: ${fecha}\n⏰ Hora: ${hora}`;
       const url = `https://wa.me/524431165465?text=${encodeURIComponent(mensaje)}`;
-      window.open(url, "_blank"); // redirección inmediata por interacción directa
+      window.open(url, "_blank");
 
       const nuevaReserva = { nombre, telefono, fecha, hora, personas, timestamp: Date.now() };
       firebase.database().ref("reservas").push(nuevaReserva)
