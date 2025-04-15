@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Encuesta | Casa Acueducto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="public/styles-reservas.css" />
+</head>
+<body>
+
+  <!-- 🔘 Sidebar Icon -->
+  <img src="public/assets/icono-ajustes-negro.png" class="menu-toggle" onclick="abrirSidebar()" />
+
+  <!-- 📋 Sidebar Navegación -->
+  <div class="sidebar" id="sidebar">
+    <button class="close-btn" onclick="cerrarSidebar()">✕</button>
+    <nav class="sidebar-nav">
+      <a href="index.html">Inicio</a>
+      <a href="menu.html">Menú</a>
+      <a href="reservas.html">Reservar</a>
+      <a href="info.html">Nosotros</a>
+      <a href="encuesta.html">Encuesta</a>
+    </nav>
+  </div>
+
+  <!-- 🔝 Top Bar -->
+  <div class="top-bar">
+    <img src="public/assets/logo-mini.png" alt="Logo Casa Acueducto" class="logo-mini" />
+    <span class="titulo-top">ENCUESTA DE SATISFACCIÓN</span>
+    <a href="reservas.html" class="btn-reservar-top">Reservar</a>
+  </div>
+
+  <!-- 🔽 ENCUESTA -->
+  <main style="padding: 2rem 1.5rem 6rem; max-width: 700px; margin: auto;">
+    <h2 style="font-size: 1.4rem; margin-bottom: 1rem;">Preguntas estratégicas de la encuesta de satisfacción (KPIs)</h2>
+
+    <!-- 1. Comida -->
+    <h3>1. Comida</h3>
+    <label>¿Cómo calificarías la calidad de los platillos que probaste? (1 a 5)</label>
+    <input type="number" min="1" max="5" />
+
+    <label>¿La presentación de la comida cumplió tus expectativas?</label>
+    <select>
+      <option>Sí</option>
+      <option>No</option>
+      <option>Podría mejorar</option>
+    </select>
+
+    <label>¿Qué te pareció la variedad del menú de desayuno y/o comida? (1 a 5)</label>
+    <input type="number" min="1" max="5" />
+
+    <!-- 2. Servicio -->
+    <h3>2. Servicio</h3>
+    <label>¿Cómo describirías la atención recibida? (1 a 5)</label>
+    <input type="number" min="1" max="5" />
+    <input type="text" placeholder="¿Por qué?" />
+
+    <label>¿El tiempo de espera para recibir tu platillo fue razonable?</label>
+    <select>
+      <option>Muy rápido</option>
+      <option>Adecuado</option>
+      <option>Lento</option>
+      <option>Muy lento</option>
+    </select>
+
+    <label>¿El personal fue amable y resolvió tus dudas?</label>
+    <select>
+      <option>En todo momento</option>
+      <option>A veces</option>
+      <option>No</option>
+    </select>
+
+    <!-- 3. Ambiente -->
+    <h3>3. Ambiente</h3>
+    <label>¿Cómo calificarías la comodidad y limpieza de las instalaciones? (1 a 5)</label>
+    <input type="number" min="1" max="5" />
+
+    <label>¿Te sentiste seguro y relajado durante tu visita? (1 a 5)</label>
+    <input type="number" min="1" max="5" />
+
+    <!-- 4. Relación Calidad-Precio -->
+    <h3>4. Relación Calidad-Precio</h3>
+    <label>¿Consideras que el precio corresponde con la calidad? (1 a 5)</label>
+    <input type="number" min="1" max="5" />
+
+    <!-- 5. Lealtad y Recomendación -->
+    <h3>5. Lealtad y Recomendación</h3>
+    <label>Del 0 al 10, ¿qué tan probable es que recomiendes este lugar?</label>
+    <input type="number" min="0" max="10" />
+
+    <label>¿Volverías a visitarnos en el futuro?</label>
+    <select>
+      <option>Definitivamente sí</option>
+      <option>Posiblemente</option>
+      <option>No</option>
+    </select>
+  </main>
+
+  <!-- ⚫ FOOTER -->
+  <footer class="footer">
+    Technology by Simbiosis ArtLab
+  </footer>
+
+  <!-- 🔧 Sidebar Script -->
+  <script>
+    function abrirSidebar() {
+      document.getElementById("sidebar").classList.add("active");
+      setTimeout(() => cerrarSidebar(), 5000);
+    }
+
+    function cerrarSidebar() {
+      document.getElementById("sidebar").classList.remove("active");
+    }
+  </script>
+</body>
+</html>
