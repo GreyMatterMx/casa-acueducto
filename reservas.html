@@ -74,7 +74,7 @@
       </div>
 
       <div class="bottom-buttons">
-        <a href="#" onclick="enviarWhatsApp()">Contáctanos vía WhatsApp</a>
+        <a href="https://wa.me/524431165465" target="_blank">Contáctanos vía WhatsApp</a>
         <a href="tel:+524431165465">Llámanos</a>
       </div>
     </form>
@@ -89,7 +89,7 @@
   <!-- 🔥 TOAST -->
   <div id="toast" class="toast">✅ ¡Reserva enviada! Redirigiéndote a WhatsApp...</div>
 
-  <!-- ✅ FUNCIONALIDAD -->
+  <!-- ✅ JS GENERAL -->
   <script>
     function abrirSidebar() {
       const sidebar = document.getElementById("sidebar");
@@ -156,47 +156,36 @@
     }
 
     function reservarYEnviarWhatsApp() {
-  const nombre = document.getElementById("nombre").value;
-  const telefono = document.getElementById("telefono").value;
-  const hora = document.getElementById("hora").value;
-  const personas = document.getElementById("cantidad").innerText;
-  const fecha = document.getElementById("fecha").value || new Date().toISOString().split('T')[0];
+      const nombre = document.getElementById("nombre").value;
+      const telefono = document.getElementById("telefono").value;
+      const hora = document.getElementById("hora").value;
+      const personas = document.getElementById("cantidad").innerText;
+      const fecha = document.getElementById("fecha").value || hoy;
 
-  if (!nombre || !telefono || !hora) {
-    alert("Por favor, completa todos los campos.");
-    return;
-  }
+      if (!nombre || !telefono || !hora) {
+        alert("Por favor, completa todos los campos.");
+        return;
+      }
 
-  const mensaje = `¡Hola! Quiero reservar una mesa en Casa Acueducto.\n\n🧑‍🤝‍🧑 Nombre: ${nombre}\n📱 Teléfono: ${telefono}\n👥 Personas: ${personas}\n📅 Fecha: ${fecha}\n⏰ Hora: ${hora}`;
-  const url = `https://wa.me/524431165465?text=${encodeURIComponent(mensaje)}`;
+      const mensaje = `¡Hola! Quiero reservar una mesa en Casa Acueducto.\n\n🧑‍🤝‍🧑 Nombre: ${nombre}\n📱 Teléfono: ${telefono}\n👥 Personas: ${personas}\n📅 Fecha: ${fecha}\n⏰ Hora: ${hora}`;
+      const url = `https://wa.me/524431165465?text=${encodeURIComponent(mensaje)}`;
+      window.open(url, "_blank"); // redirección inmediata por interacción directa
 
-  // 🔁 Abrir WhatsApp inmediatamente (por interacción directa)
-  window.open(url, "_blank");
-
-  // Guardar en Firebase después
-  const nuevaReserva = {
-    nombre,
-    telefono,
-    fecha,
-    hora,
-    personas,
-    timestamp: Date.now()
-  };
-
-  firebase.database().ref("reservas").push(nuevaReserva)
-    .then(() => {
-      mostrarToast();
-      document.getElementById("formReserva").reset();
-      document.getElementById("cantidad").innerText = "1";
-      actualizarResumen();
-    })
-    .catch((error) => {
-      alert("❌ Error al guardar la reserva: " + error.message);
-    });
-}
+      const nuevaReserva = { nombre, telefono, fecha, hora, personas, timestamp: Date.now() };
+      firebase.database().ref("reservas").push(nuevaReserva)
+        .then(() => {
+          mostrarToast();
+          document.getElementById("formReserva").reset();
+          document.getElementById("cantidad").innerText = "1";
+          actualizarResumen();
+        })
+        .catch((error) => {
+          alert("❌ Error al guardar la reserva: " + error.message);
+        });
+    }
   </script>
 
-  <!-- Firebase SDKs -->
+  <!-- ✅ Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
   <script>
@@ -212,5 +201,6 @@
     };
     firebase.initializeApp(firebaseConfig);
   </script>
+
 </body>
 </html>
