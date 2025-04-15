@@ -1,0 +1,324 @@
+/* RESET GENERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    width: 100%;
+    font-family: 'Sora', sans-serif;
+    background-color: #f9f9f9;
+    color: #1a1a1a;
+  }
+
+  body {
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  
+  /* TOP BAR: LOGO + TEXTO */
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 1.5rem 0.5rem;
+  }
+  
+  .logo-mini {
+    width: 70px;
+    height: auto;
+    margin-top: 1rem;     
+    margin-left: 1rem;    
+  }
+  
+  
+  .titulo-top {
+    font-weight: 600;
+    font-size: 1.2rem;
+    letter-spacing: 1.2px;
+    margin-top: 1.4rem;  
+    margin-right: 5rem; 
+  }
+  
+  /* TABS: HOY / OTRA FECHA */
+  .tab-container {
+    display: flex;
+    justify-content: center;
+    gap: 0rem;
+    padding: 2%;
+  }
+  
+  .tab-btn {
+    padding: 1.2rem 3.2rem;
+    border-radius: 14px;
+    border: none;
+    background-color: #e4e4e4;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #333;
+    cursor: pointer;
+    margin-top: 1rem; 
+  }
+  
+  .tab-btn.active {
+    background-color: #A32C55;
+    color: white;
+  }
+  
+  /* FORMULARIO */
+  form {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .7rem;
+    padding-left: 2.4rem;
+    padding-right: 2.4rem;
+  }
+  
+  form label {
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+  
+  input[type="text"],
+  input[type="tel"] {
+    width: 100%;
+    padding: .5rem 1rem;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background-color: #fff;
+  }
+  
+  /* PERSONAS Y HORA */
+  .people-picker,
+  .arrival {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0rem;
+    border-radius: 14px;
+    margin-bottom: -1rem;
+    margin-top: 0rem;
+  }
+  
+  .label-group {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+
+  .label-group img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  
+  .label-group span {
+    font-weight: 600;
+  }
+  
+  .label-group small {
+    color: #721131;
+    font-size: .8rem;
+  }
+
+  /* BOTONES +/- */
+  .count-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .count-group button {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background-color: #eaeaea;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  
+  .count-group span {
+    font-weight: 600;
+  }
+
+  .input-hora {
+    padding: 0.8rem .5rem;
+    border-radius: 14px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #1a1a1a;
+    font-family: 'Sora', sans-serif;
+    width: 100px;
+  }
+  
+  
+  /* BOTONES WHATSAPP / LLAMADA */
+  .bottom-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 9rem;
+  }
+  
+  .bottom-buttons a {
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 1.4rem 1.2rem;
+    text-decoration: none;
+    color: #1a1a1a;
+    font-weight: 600;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+    font-size: .9rem;
+    transition: all 0.2s ease-in-out;
+  }
+  .bottom-buttons a:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+}
+  
+  /* RESERVA BOTTOM FIXED */
+  .reserva-confirm {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    padding: 1.5rem 1rem;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .reserva-confirm p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .reserva-confirm small {
+    color: #A32C55;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  
+  .reserva-confirm button {
+    background-color: #A32C55;
+    color: white;
+    font-weight: 600;
+    font-size: 1.2rem;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 300px;
+    margin-top: 0.5rem;
+    cursor: pointer;
+  }
+  
+  /* 🔘 FECHA DINÁMICA (OTRA FECHA) */
+#selector-fecha {
+    padding: 0 2.4rem;
+    margin-top: 1rem;
+  }
+  
+  .input-fecha {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background-color: #fff;
+    font-family: 'Sora', sans-serif;
+  }
+  
+  #selector-fecha label {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+    display: inline-block;
+  }
+  
+  .toast {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #A32C55;
+    color: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1000;
+    font-size: 0.95rem;
+  }
+  .toast.show {
+    opacity: 1;
+  }
+  
+  .menu-toggle {
+    position: absolute;
+    top: 3.3rem;
+    right: 1.5rem;
+    width: 50px;
+    height: auto;
+    cursor: pointer;
+    z-index: 100;
+  }
+  
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 75%;
+    height: 100%;
+    background-color: rgba(26, 26, 26, 0.95);
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.4);
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 99;
+    padding: 2rem;
+  }
+  
+  .sidebar.active {
+    transform: translateX(0%);
+  }
+  
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 5rem;
+  }
+  
+  .sidebar-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+  

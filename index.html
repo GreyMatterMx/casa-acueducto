@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casa Acueducto</title>
+
+  <!-- ✅ Importar Google Font: Sora -->
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- ✅ Tu CSS va después -->
+  <link rel="stylesheet" href="public/styles-home.css" />
+</head>
+
+<body>
+
+  <!-- Este header está oculto con CSS, pero se queda si lo necesitas en el futuro -->
+  <header>
+    <h1>Casa Acueducto</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="menu.html">Menú</a>
+      <a href="reservas.html">Reservas</a>
+      <a href="dashboard.html">Dashboard</a>
+    </nav>
+  </header>
+
+  <!-- ✅ Estructura principal -->
+  <main class="home">
+    <img src="public/assets/logo-blanco.png" alt="Logo Casa Acueducto" class="logo" />
+
+    <p class="slogan">¡CONOCE NUESTRA RENOVADA EXPERIENCIA DIGITAL!</p>
+    
+    <p class="direccion">
+      Av. Acueducto #72 Col. Chapultepec norte,<br>Morelia, México
+    </p>
+    
+    <div class="botones-home">
+      <a href="menu.html" class="btn">MENÚ</a>
+      <a href="info.html" class="btn">CONÓCENOS</a>
+    </div>
+  </main>
+
+  <!-- Script (si lo usas) -->
+  <script src="public/menu.js"></script>
+  <script>
+    document.querySelectorAll('a[href]').forEach(link => {
+      if (link.href.includes('#') || link.target === '_blank') return; // evita anclas
+  
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.body.style.transition = 'opacity 0.3s ease';
+        document.body.style.opacity = 0;
+  
+        setTimeout(() => {
+          window.location.href = link.href;
+        }, 300);
+      });
+    });
+  </script>
+  
+</body>
+</html>

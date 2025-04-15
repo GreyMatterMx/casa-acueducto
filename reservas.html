@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reservas | Casa Acueducto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="public/styles-reservas.css" />
+</head>
+
+<body>
+
+  <!-- 🔘 Sidebar Icon -->
+  <img src="public/assets/icono-ajustes-negro.png" class="menu-toggle" onclick="abrirSidebar()" />
+
+  <!-- 📋 Sidebar Navegación -->
+  <div class="sidebar" id="sidebar">
+    <button class="close-btn" onclick="cerrarSidebar()">✕</button>
+    <nav class="sidebar-nav">
+      <a href="index.html">Inicio</a>
+      <a href="menu.html">Menú</a>
+      <a href="reservas.html">Reservar</a>
+      <a href="info.html">Información</a>
+    </nav>
+  </div>
+
+  <!-- 🔝 Top bar -->
+  <div class="top-bar">
+    <img src="public/assets/logo-mini.png" alt="Casa Acueducto Logo" class="logo-mini" />
+    <span class="titulo-top">RESERVA TU MESA</span>
+  </div>
+
+  <main>
+    <!-- TABS -->
+    <div class="tab-container">
+      <button class="tab-btn active" id="btnHoy">HOY</button>
+      <button class="tab-btn" id="btnOtra">OTRA FECHA</button>
+    </div>
+
+    <div id="selector-fecha" class="fecha-container" style="display: none;">
+      <label for="fecha">Selecciona la fecha:</label>
+      <input type="date" id="fecha" name="fecha" class="input-fecha" />
+    </div>
+
+    <form id="formReserva">
+      <label for="nombre">Compártenos tus datos</label>
+      <input type="text" id="nombre" placeholder="Nombre" required />
+      <input type="tel" id="telefono" placeholder="Teléfono" required />
+
+      <div class="people-picker">
+        <div class="label-group">
+          <img src="public/assets/user-icon.png" alt="Personas" width="30" />
+          <div>
+            <span>Número de personas</span><br />
+            <small>Aproximado</small>
+          </div>
+        </div>
+        <div class="count-group">
+          <button type="button" onclick="cambiarCantidad(-1)">−</button>
+          <span id="cantidad">1</span>
+          <button type="button" onclick="cambiarCantidad(1)">+</button>
+        </div>
+      </div>
+
+      <div class="arrival">
+        <div class="label-group">
+          <img src="public/assets/clock-icon.png" alt="Hora" width="30" />
+          <div>
+            <span>Hora de llegada</span><br />
+            <small>Sujeto a disponibilidad</small>
+          </div>
+        </div>
+        <input type="time" id="hora" required class="input-hora" />
+      </div>
+
+      <div class="bottom-buttons">
+        <a href="#" onclick="enviarWhatsApp()">Contáctanos vía WhatsApp</a>
+        <a href="tel:+524431165465">Llámanos</a>
+      </div>
+    </form>
+
+    <div class="reserva-confirm">
+      <p>Mesa (Hora) para (#) personas</p>
+      <small>Casa Acueducto</small>
+      <button onclick="reservarYEnviarWhatsApp()">RESERVAR</button>
+    </div>
+  </main>
+
+  <!-- 🔥 TOAST -->
+  <div id="toast" class="toast">✅ ¡Reserva enviada! Redirigiéndote a WhatsApp...</div>
+
+  <!-- ✅ FUNCIONALIDAD -->
+  <script>
+    function abrirSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.add("active");
+      setTimeout(() => cerrarSidebar(), 5000);
+    }
+
+    function cerrarSidebar() {
+      document.getElementById("sidebar").classList.remove("active");
+    }
+
+    const btnHoy = document.getElementById('btnHoy');
+    const btnOtra = document.getElementById('btnOtra');
+    const selectorFecha = document.getElementById('selector-fecha');
+    const fechaInput = document.getElementById('fecha');
+    const cantidadSpan = document.getElementById('cantidad');
+    const horaInput = document.getElementById('hora');
+    const resumenParrafo = document.querySelector('.reserva-confirm p');
+
+    const hoy = new Date().toISOString().split('T')[0];
+    window.addEventListener('DOMContentLoaded', () => {
+      btnHoy.classList.add('active');
+      btnOtra.classList.remove('active');
+      selectorFecha.style.display = 'none';
+      fechaInput.value = hoy;
+      actualizarResumen();
+    });
+
+    btnHoy.onclick = () => {
+      btnHoy.classList.add('active');
+      btnOtra.classList.remove('active');
+      selectorFecha.style.display = 'none';
+      fechaInput.value = hoy;
+    };
+
+    btnOtra.onclick = () => {
+      btnHoy.classList.remove('active');
+      btnOtra.classList.add('active');
+      selectorFecha.style.display = 'block';
+      fechaInput.value = '';
+    };
+
+    function cambiarCantidad(delta) {
+      let actual = parseInt(cantidadSpan.textContent);
+      actual = Math.max(1, actual + delta);
+      cantidadSpan.textContent = actual;
+      actualizarResumen();
+    }
+
+    horaInput.addEventListener('input', actualizarResumen);
+
+    function actualizarResumen() {
+      const cantidad = cantidadSpan.textContent;
+      const hora = horaInput.value;
+      resumenParrafo.textContent = hora
+        ? `Mesa a las ${hora} para ${cantidad} personas`
+        : `Mesa (Hora) para ${cantidad} personas`;
+    }
+
+    function mostrarToast() {
+      const toast = document.getElementById("toast");
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2500);
+    }
+
+    function enviarWhatsApp() {
+      const nombre = document.getElementById('nombre').value;
+      const telefono = document.getElementById('telefono').value;
+      const cantidad = document.getElementById('cantidad').innerText;
+      const hora = document.getElementById('hora').value;
+      const fecha = document.getElementById('fecha').value || hoy;
+
+      const mensaje = `¡Hola! Quiero reservar una mesa en Casa Acueducto.\n\n🧑‍🤝‍🧑 Nombre: ${nombre}\n📱 Teléfono: ${telefono}\n👥 Personas: ${cantidad}\n📅 Fecha: ${fecha}\n⏰ Hora: ${hora}`;
+      const url = `https://wa.me/524431165465?text=${encodeURIComponent(mensaje)}`;
+      window.open(url, '_blank');
+    }
+
+    function reservarYEnviarWhatsApp() {
+      const nombre = document.getElementById("nombre").value;
+      const telefono = document.getElementById("telefono").value;
+      const hora = document.getElementById("hora").value;
+      const personas = document.getElementById("cantidad").innerText;
+      const fecha = document.getElementById("fecha").value || hoy;
+
+      if (!nombre || !telefono || !hora) {
+        alert("Por favor, completa todos los campos.");
+        return;
+      }
+
+      const nuevaReserva = { nombre, telefono, fecha, hora, personas, timestamp: Date.now() };
+
+      const mensaje = `¡Hola! Quiero reservar una mesa en Casa Acueducto.\n\n🧑‍🤝‍🧑 Nombre: ${nombre}\n📱 Teléfono: ${telefono}\n👥 Personas: ${personas}\n📅 Fecha: ${fecha}\n⏰ Hora: ${hora}`;
+      const url = `https://wa.me/524431165465?text=${encodeURIComponent(mensaje)}`;
+
+      firebase.database().ref("reservas").push(nuevaReserva)
+        .then(() => {
+          mostrarToast();
+          setTimeout(() => {
+            window.open(url, "_blank");
+            document.getElementById("formReserva").reset();
+            document.getElementById("cantidad").innerText = "1";
+            actualizarResumen();
+          }, 3000);
+        })
+        .catch((error) => {
+          alert("❌ Error al guardar la reserva: " + error.message);
+        });
+    }
+  </script>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyA0M-jbprRPbhKN8G-WtOzouyxsRWUh6e0",
+      authDomain: "casa-acueducto-morelia-2025.firebaseapp.com",
+      databaseURL: "https://casa-acueducto-morelia-2025-default-rtdb.firebaseio.com/",
+      projectId: "casa-acueducto-morelia-2025",
+      storageBucket: "casa-acueducto-morelia-2025.firebasestorage.app",
+      messagingSenderId: "552624655725",
+      appId: "1:552624655725:web:a3886f1465d192e8f7de64",
+      measurementId: "G-85N5VDQYRL"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+</body>
+</html>

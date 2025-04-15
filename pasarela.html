@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casa Acueducto | Pasarela</title>
+
+  <!-- Fuente Google Sora -->
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS específico de esta pantalla -->
+  <link rel="stylesheet" href="public/styles-pasarela.css" />
+</head>
+<body>
+
+  <!-- 🖤 ZONA NEGRA SUPERIOR -->
+  <div class="pasarela-top">
+    <img src="public/assets/logo-app.png" alt="Logo Casa Acueducto" class="logo-pasarela" />
+    <a href="reservas.html" class="btn-reserva">RESERVA UNA MESA</a>
+  </div>
+
+  <!-- 🤍 ZONA DE CATEGORÍAS -->
+  <div class="pasarela-bottom">
+
+    <!-- Botones de menú -->
+    <img src="public/assets/menu-desayunos.png" alt="Menú Desayunos" class="menu-img" />
+    <img src="public/assets/menu-comida.png" alt="Menú Comida" class="menu-img" />
+    <img src="public/assets/menu-bebidas.png" alt="Menú Bebidas" class="menu-img" />
+
+    <!-- Imagen promocional -->
+    <img src="public/assets/coldbrew.png" alt="Cold Brew Acueducto" class="menu-img coldbrew-img" />
+
+  </div>
+
+</body>
+<script>
+  document.querySelectorAll('a[href]').forEach(link => {
+    if (link.href.includes('#') || link.target === '_blank') return; // evita anclas
+
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.body.style.transition = 'opacity 0.3s ease';
+      document.body.style.opacity = 0;
+
+      setTimeout(() => {
+        window.location.href = link.href;
+      }, 300);
+    });
+  });
+</script>
+</html>

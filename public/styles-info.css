@@ -1,0 +1,181 @@
+/* ✅ RESET GLOBAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Sora', sans-serif;
+  background-color: #ffffff;
+  color: #000;
+  overflow-x: hidden;
+}
+
+body {
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+
+/* ✅ INFO PAGE */
+.info-top {
+  background: linear-gradient(to bottom, #1a1a1a, #202020);
+  min-height: 300px;
+  padding: 2rem 1rem;
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-info {
+  width: 100%;
+  max-width: 380px;
+  margin-bottom: 2rem;
+}
+
+/* ✅ Botón que cruza entre la zona negra y blanca */
+.btn-reserva {
+  position: absolute;
+  bottom: -30px; /* Coloca el botón 40px por debajo del bloque negro */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #A32C55;
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 1.3rem 0;
+  border-radius: 24px;
+  width: 90%;
+  max-width: 280px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+/* ✅ Parte blanca */
+.info-bottom {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6rem 1rem 4rem; /* asegúrate de dejar espacio para el botón arriba */
+}
+
+.info-img {
+  width: 100%;
+  max-width: 420px;
+  margin-bottom: 2rem;
+  border-radius: 16px;
+}
+
+.info-img:first-of-type {
+  margin-top: -3.5rem;
+}
+
+.coldbrew-img {
+  width: 111vw;
+  max-width: none;
+  margin: auto 2rem;
+  margin-top: -4rem;
+}
+
+.btn-menu {
+  background-color: #A32C55;
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 1.5rem 0;
+  border-radius: 24px;
+  width: 90%;
+  max-width: 280px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🔘 Sidebar Icon */
+.menu-toggle {
+  position: absolute;
+  top: 1.8rem;
+  right: 1.5rem;
+  width: 55px;
+  height: auto;
+  cursor: pointer;
+  z-index: 100;
+}
+
+/* 📋 Sidebar Panel */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 75%;
+  height: 100%;
+  background-color: rgba(26, 26, 26, 0.95);
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.4);
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 99;
+  padding: 2rem;
+}
+
+.sidebar.active {
+  transform: translateX(0%);
+}
+
+/* 📋 Sidebar Content */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 5rem;
+}
+
+.sidebar-nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* ❌ Cerrar */
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 17rem;
+}
