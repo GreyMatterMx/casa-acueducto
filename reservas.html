@@ -155,49 +155,45 @@
       setTimeout(() => toast.classList.remove("show"), 2500);
     }
 
-    function enviarWhatsApp() {
-      const nombre = document.getElementById('nombre').value;
-      const telefono = document.getElementById('telefono').value;
-      const cantidad = document.getElementById('cantidad').innerText;
-      const hora = document.getElementById('hora').value;
-      const fecha = document.getElementById('fecha').value || hoy;
-
-      const mensaje = `¡Hola! Quiero reservar una mesa en Casa Acueducto.\n\n🧑‍🤝‍🧑 Nombre: ${nombre}\n📱 Teléfono: ${telefono}\n👥 Personas: ${cantidad}\n📅 Fecha: ${fecha}\n⏰ Hora: ${hora}`;
-      const url = `https://wa.me/524431165465?text=${encodeURIComponent(mensaje)}`;
-      window.open(url, '_blank');
-    }
-
     function reservarYEnviarWhatsApp() {
-      const nombre = document.getElementById("nombre").value;
-      const telefono = document.getElementById("telefono").value;
-      const hora = document.getElementById("hora").value;
-      const personas = document.getElementById("cantidad").innerText;
-      const fecha = document.getElementById("fecha").value || hoy;
+  const nombre = document.getElementById("nombre").value;
+  const telefono = document.getElementById("telefono").value;
+  const hora = document.getElementById("hora").value;
+  const personas = document.getElementById("cantidad").innerText;
+  const fecha = document.getElementById("fecha").value || new Date().toISOString().split('T')[0];
 
-      if (!nombre || !telefono || !hora) {
-        alert("Por favor, completa todos los campos.");
-        return;
-      }
+  if (!nombre || !telefono || !hora) {
+    alert("Por favor, completa todos los campos.");
+    return;
+  }
 
-      const nuevaReserva = { nombre, telefono, fecha, hora, personas, timestamp: Date.now() };
+  const mensaje = `¡Hola! Quiero reservar una mesa en Casa Acueducto.\n\n🧑‍🤝‍🧑 Nombre: ${nombre}\n📱 Teléfono: ${telefono}\n👥 Personas: ${personas}\n📅 Fecha: ${fecha}\n⏰ Hora: ${hora}`;
+  const url = `https://wa.me/524431165465?text=${encodeURIComponent(mensaje)}`;
 
-      const mensaje = `¡Hola! Quiero reservar una mesa en Casa Acueducto.\n\n🧑‍🤝‍🧑 Nombre: ${nombre}\n📱 Teléfono: ${telefono}\n👥 Personas: ${personas}\n📅 Fecha: ${fecha}\n⏰ Hora: ${hora}`;
-      const url = `https://wa.me/524431165465?text=${encodeURIComponent(mensaje)}`;
+  // 🔁 Abrir WhatsApp inmediatamente (por interacción directa)
+  window.open(url, "_blank");
 
-      firebase.database().ref("reservas").push(nuevaReserva)
-        .then(() => {
-          mostrarToast();
-          setTimeout(() => {
-            window.open(url, "_blank");
-            document.getElementById("formReserva").reset();
-            document.getElementById("cantidad").innerText = "1";
-            actualizarResumen();
-          }, 3000);
-        })
-        .catch((error) => {
-          alert("❌ Error al guardar la reserva: " + error.message);
-        });
-    }
+  // Guardar en Firebase después
+  const nuevaReserva = {
+    nombre,
+    telefono,
+    fecha,
+    hora,
+    personas,
+    timestamp: Date.now()
+  };
+
+  firebase.database().ref("reservas").push(nuevaReserva)
+    .then(() => {
+      mostrarToast();
+      document.getElementById("formReserva").reset();
+      document.getElementById("cantidad").innerText = "1";
+      actualizarResumen();
+    })
+    .catch((error) => {
+      alert("❌ Error al guardar la reserva: " + error.message);
+    });
+}
   </script>
 
   <!-- Firebase SDKs -->
