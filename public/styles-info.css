@@ -179,3 +179,41 @@ body {
   top: 1rem;
   right: 17rem;
 }
+
+.footer {
+  background-color: #111;
+  padding: 1.2rem 1rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: white;
+  letter-spacing: 1px;
+  font-weight: 400;
+}
+
+.info-section {
+  padding: 3rem 1.5rem 2rem;
+  background-color: #fefefe;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+.info-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.info-container h2 {
+  font-size: 1.8rem;
+  color: #A32C55;
+  margin-bottom: 1rem;
+}
+
+.info-container p {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+}
+
+.info-container p:last-child {
+  margin-bottom: -2.5rem;
+}

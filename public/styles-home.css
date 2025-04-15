@@ -146,3 +146,14 @@ body {
 .botones-home {
   animation-delay: 0.8s;
 }
+
+
+.footer {
+  background-color: #111;
+  padding: 1.2rem 1rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: white;
+  letter-spacing: 1px;
+  font-weight: 400;
+}

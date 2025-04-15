@@ -81,7 +81,7 @@ body {
 
 /* 📄 MENÚ */
 .menu-content {
-  padding: 0rem 1.5rem 10rem;
+  padding: 0rem 1.5rem 2rem;
   background-color: #fff;
 }
 
@@ -242,4 +242,14 @@ html {
   position: absolute;
   top: 1rem;
   right: 17rem;
+}
+
+.footer {
+  background-color: #111;
+  padding: 1.2rem 1rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: white;
+  letter-spacing: 1px;
+  font-weight: 400;
 }
